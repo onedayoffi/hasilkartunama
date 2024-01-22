@@ -5,28 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Posted Card</title>
     <style>
-                 body {
-         	font-family: poppin, arial, helveltica, san-serif;
+        body {
+            font-family: poppin, arial, helveltica, san-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-
             margin: 0;
         }
 
         .container {
             width: 400px;
-            height: 200px;
             background-color: #f0f0f0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
         }
 
-        .container img {
+        .card {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card img {
             width: 80px;
             height: 80px;
             border-radius: 50%;
@@ -34,10 +37,10 @@
             transition: transform 0.3s ease-in-out;
         }
 
-        .container img:hover {
+        .card img:hover {
             transform: scale(1.2);
         }
-        
+
         .card p {
             display: flex;
             justify-content: center;
@@ -53,7 +56,7 @@
 
 <script>
     // Ambil data dari server (GitHub API)
-    fetch('https://api.github.com/repos/onedayoffi/kartunama/contents/cards.json', {
+    fetch('https://api.github.com/repos/onedayoffi/hasilkartunama/contents/cards.json', {
         headers: {
             'Authorization': 'Bearer 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',
         },
@@ -86,7 +89,6 @@
         alert('Failed to fetch data. Please try again.');
     });
 </script>
-
 
 </body>
 </html>
