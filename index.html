@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posted Card</title>
+    <style>
+                 body {
+         	font-family: poppin, arial, helveltica, san-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            margin: 0;
+        }
+
+        .container {
+            width: 400px;
+            height: 200px;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .container img:hover {
+            transform: scale(1.2);
+        }
+        
+        .card p {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="cardContainer">
+    <!-- Cards will be dynamically added here -->
+</div>
+
+<script>
+    // Ambil data dari server (GitHub API)
+    fetch('https://api.github.com/repos/onedayoffi/kartunama/contents/cards.json', {
+        headers: {
+            'Authorization': 'Bearer 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',
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Handle response from server (if needed)
+        console.log(data);
+
+        // Tampilkan data dalam bentuk kartu
+        var cardContainer = document.getElementById('cardContainer');
+        data.forEach(function(cardData) {
+            var cardDiv = document.createElement('div');
+            cardDiv.className = 'card';
+
+            var imgElement = document.createElement('img');
+            imgElement.src = cardData.imageURL;
+            imgElement.alt = cardData.name;
+
+            var pElement = document.createElement('p');
+            pElement.textContent = cardData.name;
+
+            cardDiv.appendChild(imgElement);
+            cardDiv.appendChild(pElement);
+            cardContainer.appendChild(cardDiv);
+        });
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to fetch data. Please try again.');
+    });
+</script>
+
+
+</body>
+</html>
